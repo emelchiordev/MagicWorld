@@ -12,6 +12,13 @@ public abstract class Personnages {
         this.agility = agility;
         this.intelligence = intelligence;
     }
+    public Personnages(){
+        this.level = 0;
+        this.life = 0;
+        this.strength = 0;
+        this.agility = 0;
+        this.intelligence = 0;
+    }
 
     public int getLevel() {
         return level;
