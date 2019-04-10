@@ -2,14 +2,15 @@ import java.util.Scanner;
 
 public class PersonnagesMaker {
       Scanner sc = new Scanner(System.in);
-      int player;
+
 
 
 
     /**
      * Choose the Character to fight and differents abilities and features
      */
-    public void chooseCharacter(){
+    public void chooseCharacter(int nbPlayer){
+        System.out.println("Création du personnage du joueur"+nbPlayer);
         System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
         int numChara = sc.nextInt()-1;
         Personnages type[] = {new Guerrier(), new Rodeur(), new Mage()};
@@ -18,10 +19,10 @@ public class PersonnagesMaker {
                 type[numChara].setStrength(chooseStrength());
                 type[numChara].setAgility(chooseAgility());
                 type[numChara].setIntelligence(chooseIntelligence());
-                type[numChara].setLife(chooseLevel()*5);
-                player++;
+                type[numChara].setLife(type[numChara].getLevel()*5);
 
-                System.out.println(type[numChara].toString() + "Joueur "+player + " Niveau " +type[numChara].getLevel()+
+
+                System.out.println(type[numChara].toString() + "Joueur"+nbPlayer + " Niveau " +type[numChara].getLevel()+
                         " je possède "+type[numChara].getLife()+" de vitalité, "+type[numChara].getStrength()+ " de force, "+
                         type[numChara].getAgility()+" d'agilité, "+ type[numChara].getIntelligence()+" d'intelligence !"
                 );
