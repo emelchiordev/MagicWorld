@@ -2,28 +2,29 @@ import java.util.Scanner;
 
 public class PersonnagesMaker {
       Scanner sc = new Scanner(System.in);
+      int player;
 
 
+
+    /**
+     * Choose the Character to fight and differents abilities and features
+     */
     public void chooseCharacter(){
         System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
-        int numChara = sc.nextInt();
-        Personnages type = null;
-        switch (numChara) {
-            case 1:
-                type = new Guerrier();
-                type.setLevel(chooseLevel());
-                type.setStrength(chooseStrength());
-                type.setAgility(chooseAgility());
-                type.setIntelligence(chooseIntelligence());
-                break;
-            case 2 :
-                type = new Rodeur();
-                break;
-            case 3 :
-                type = new Mage();
-                break;
-        }
+        int numChara = sc.nextInt()-1;
+        Personnages type[] = {new Guerrier(), new Rodeur(), new Mage()};
 
+                type[numChara].setLevel(chooseLevel());
+                type[numChara].setStrength(chooseStrength());
+                type[numChara].setAgility(chooseAgility());
+                type[numChara].setIntelligence(chooseIntelligence());
+                type[numChara].setLife(chooseLevel()*5);
+                player++;
+
+                System.out.println(type[numChara].toString() + "Joueur "+player + " Niveau " +type[numChara].getLevel()+
+                        " je possède "+type[numChara].getLife()+" de vitalité, "+type[numChara].getStrength()+ " de force, "+
+                        type[numChara].getAgility()+" d'agilité, "+ type[numChara].getIntelligence()+" d'intelligence !"
+                );
 
     }
 
@@ -36,18 +37,32 @@ public class PersonnagesMaker {
      return level;
     }
 
+    /**
+     *
+     * @return Strength of Character
+     */
     public int chooseStrength(){
         System.out.println("Force du personnage ?");
         int strength = sc.nextInt();
         return strength;
     }
+
+    /**
+     *
+     * @return Agility of Character
+     */
     public int chooseAgility(){
         System.out.println("Agilité du personnage ?");
         int agility = sc.nextInt();
         return agility;
     }
+
+    /**
+     *
+     * @return Intelligence of Character
+     */
     public int chooseIntelligence(){
-        System.out.println("Agilité du personnage ?");
+        System.out.println("Intelligence du personnage ?");
         int intelligence = sc.nextInt();
         return intelligence;
     }
