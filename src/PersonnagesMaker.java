@@ -4,38 +4,53 @@ public class PersonnagesMaker {
       Scanner sc = new Scanner(System.in);
 
 
-
-    /*
-    * Allows to inform all the characteristics of the character, level, agility etc.
-    * FR : Permet de renseigner toutes les caractéristiques du personnage, niveau, agilité etc.
-    * */
-
-    public int featureCharac(){
+    public void chooseCharacter(){
         System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
-        int numPerso = sc.nextInt();
-        switch (numPerso) {
+        int numChara = sc.nextInt();
+        Personnages type = null;
+        switch (numChara) {
             case 1:
-                Personnages guerrier = new Guerrier();
+                type = new Guerrier();
+                type.setLevel(chooseLevel());
+                type.setStrength(chooseStrength());
+                type.setAgility(chooseAgility());
+                type.setIntelligence(chooseIntelligence());
                 break;
             case 2 :
-                Personnages rodeur = new Rodeur();
+                type = new Rodeur();
                 break;
             case 3 :
-                Personnages mage = new Mage();
+                type = new Mage();
                 break;
         }
-        return numPerso;
-
-
 
 
     }
 
-    public void sentenceCharac(){
-        System.out.println("Niveau du personnage :");
-        int nb = sc.nextInt();
-
-
-
+    /**
+     * @return Level of Character
+     */
+    public int chooseLevel(){
+     System.out.println("Niveau du personnage ?");
+     int level = sc.nextInt();
+     return level;
     }
+
+    public int chooseStrength(){
+        System.out.println("Force du personnage ?");
+        int strength = sc.nextInt();
+        return strength;
+    }
+    public int chooseAgility(){
+        System.out.println("Agilité du personnage ?");
+        int agility = sc.nextInt();
+        return agility;
+    }
+    public int chooseIntelligence(){
+        System.out.println("Agilité du personnage ?");
+        int intelligence = sc.nextInt();
+        return intelligence;
+    }
+
+
 }
