@@ -3,6 +3,9 @@ import java.util.Scanner;
 public class PersonnagesMaker {
       Scanner sc = new Scanner(System.in);
 
+      // Attribut pour tester
+      int nbLevel;
+
 
 
 
@@ -10,12 +13,13 @@ public class PersonnagesMaker {
      * Choose the Character to fight and differents abilities and features
      */
     public void chooseCharacter(int nbPlayer){
-        System.out.println("Création du personnage du joueur"+nbPlayer);
+        System.out.println("Création du personnage du Joueur "+nbPlayer);
         System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
         int numChara = sc.nextInt()-1;
         Personnages type[] = {new Guerrier(), new Rodeur(), new Mage()};
 
                 type[numChara].setLevel(chooseLevel());
+                nbLevel = type[numChara].getLevel();
                 type[numChara].setStrength(chooseStrength());
                 type[numChara].setAgility(chooseAgility());
                 type[numChara].setIntelligence(chooseIntelligence());
@@ -42,20 +46,41 @@ public class PersonnagesMaker {
      *
      * @return Strength of Character
      */
-    public int chooseStrength(){
-        System.out.println("Force du personnage ?");
-        int strength = sc.nextInt();
-        return strength;
-    }
+    public int chooseStrength() {
+
+           try {
+               System.out.println("Force du personnage ?");
+               int strength = sc.nextInt();
+               this.levelTest(strength);
+               nbLevel -= strength;
+               return strength;
+           } catch (StrengthTooMuchExceptions e) {
+
+               System.err.println("ATTENTION ! la force de votre personnage dépasse le niveau de votre joueur !");
+
+           }
+           return chooseStrength();
+       }
+
+
+
+
+
 
     /**
      *
      * @return Agility of Character
      */
     public int chooseAgility(){
-        System.out.println("Agilité du personnage ?");
-        int agility = sc.nextInt();
-        return agility;
+        try {
+            System.out.println("Agilité du personnage ?");
+            int agility = sc.nextInt();
+            this.levelTest(agility);
+            nbLevel -= agility;
+            return agility;
+        } catch (StrengthTooMuchExceptions e) {
+            System.err.println("ATTENTION! le total de votre force et de votre agilité dépasse le niveau de votre personnage ");
+        }   return chooseAgility();
     }
 
     /**
@@ -63,9 +88,21 @@ public class PersonnagesMaker {
      * @return Intelligence of Character
      */
     public int chooseIntelligence(){
-        System.out.println("Intelligence du personnage ?");
-        int intelligence = sc.nextInt();
-        return intelligence;
+        try {
+            System.out.println("Intelligence du personnage ?");
+            int intelligence = sc.nextInt();
+            this.levelTest(intelligence);
+            return intelligence;
+        } catch (StrengthTooMuchExceptions e) {
+            System.err.println("ATTENTION ! la somme de votre force, agilité et intelligence dépasse le niveau de votre personnage ");
+        }
+        return chooseIntelligence();
+    }
+
+    public void levelTest(int nbAbility){
+        if (nbLevel - nbAbility <0){
+            throw new StrengthTooMuchExceptions();
+        }
     }
 
 
