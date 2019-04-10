@@ -54,7 +54,7 @@ public class PersonnagesMaker {
                this.levelTest(strength);
                nbLevel -= strength;
                return strength;
-           } catch (StrengthTooMuchExceptions e) {
+           } catch (AbilityTooMuchExceptions e) {
 
                System.err.println("ATTENTION ! la force de votre personnage dépasse le niveau de votre joueur !");
 
@@ -78,7 +78,7 @@ public class PersonnagesMaker {
             this.levelTest(agility);
             nbLevel -= agility;
             return agility;
-        } catch (StrengthTooMuchExceptions e) {
+        } catch (AbilityTooMuchExceptions e) {
             System.err.println("ATTENTION! le total de votre force et de votre agilité dépasse le niveau de votre personnage ");
         }   return chooseAgility();
     }
@@ -93,7 +93,7 @@ public class PersonnagesMaker {
             int intelligence = sc.nextInt();
             this.levelTest(intelligence);
             return intelligence;
-        } catch (StrengthTooMuchExceptions e) {
+        } catch (AbilityTooMuchExceptions e) {
             System.err.println("ATTENTION ! la somme de votre force, agilité et intelligence dépasse le niveau de votre personnage ");
         }
         return chooseIntelligence();
@@ -101,7 +101,7 @@ public class PersonnagesMaker {
 
     public void levelTest(int nbAbility){
         if (nbLevel - nbAbility <0){
-            throw new StrengthTooMuchExceptions();
+            throw new AbilityTooMuchExceptions();
         }
     }
 
