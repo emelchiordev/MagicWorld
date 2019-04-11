@@ -7,6 +7,16 @@ public class Mage extends Personnages {
     }
 
     @Override
+    public int basicAttack(){
+        return 0;
+
+    }
+    @Override
+    public int specialAttack(){
+        return 0;
+
+    }
+    @Override
     public String toString() {
         return "Abracadabra je suis le Mage ";
     }

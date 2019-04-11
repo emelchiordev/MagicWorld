@@ -6,13 +6,10 @@ public class PersonnagesMaker {
       // Attribut pour tester
       int nbLevel;
 
-
-
-
     /**
      * Choose the Character to fight and differents abilities and features
      */
-    public void chooseCharacter(int nbPlayer){
+    public int chooseCharacter(int nbPlayer){
         System.out.println("Création du personnage du Joueur "+nbPlayer);
         System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
         int numChara = sc.nextInt()-1;
@@ -30,7 +27,7 @@ public class PersonnagesMaker {
                         " je possède "+type[numChara].getLife()+" de vitalité, "+type[numChara].getStrength()+ " de force, "+
                         type[numChara].getAgility()+" d'agilité, "+ type[numChara].getIntelligence()+" d'intelligence !"
                 );
-
+    return type[numChara].getLife();
     }
 
     /**

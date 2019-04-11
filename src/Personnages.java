@@ -59,4 +59,7 @@ public abstract class Personnages {
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
+
+    public abstract int basicAttack();
+    public abstract int specialAttack();
 }
