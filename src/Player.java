@@ -1,11 +1,12 @@
 public class Player {
     protected String namePlayer;
-   protected int lifePlayer;
+    protected int lifePlayer;
 
-    public Player(int lifePlayer, String namePlayer) {
-        this.lifePlayer = lifePlayer;
+    public Player(String namePlayer) {
+        this.lifePlayer = 0;
         this.namePlayer = namePlayer;
     }
+
 
     public int getLifePlayer() {
         return lifePlayer;
