@@ -2,39 +2,38 @@ import java.util.Scanner;
 
 public class PersonnagesMaker {
       Scanner sc = new Scanner(System.in);
-
-      // Attribut pour tester
-      int nbLevel;
+      int nbLevel;     // Niveau du personnage
 
     /**
-     * Choose the Character to fight and differents abilities and features
-     * @return Le personnage que le joueur à choisit ainsi
+     * Permet de choisir le personnage du joueur, ainsi que tous ses attributs.
+     * Cette méthode calcul également la vie du joueur
+     * @return Le personnage choisi par le joueur
      *
      */
-    public Personnages chooseCharacter(Player player){
+    public Personnages makeCharacter(Player player){
+
         System.out.println("Création du personnage du "+player.getNamePlayer());
         System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
         int numChara = sc.nextInt()-1;
 
-        Personnages type[] = {new Guerrier(), new Rodeur(), new Mage()};
+        Personnages type[] = {new Guerrier(), new Rodeur(), new Mage()}; // tableau qui contient les différentes instances de personnage
 
-                type[numChara].setLevel(chooseLevel());
-                nbLevel = type[numChara].getLevel();
-                type[numChara].setStrength(chooseStrength());
-                type[numChara].setAgility(chooseAgility());
-                type[numChara].setIntelligence(chooseIntelligence());
-                player.setLifePlayer(type[numChara].getLevel()*5);
+                type[numChara].setLevel(chooseLevel()); // on choisit le niveau du personnage
+                nbLevel = type[numChara].getLevel(); // on récupère le niveau du personnage dans un attribut
+                type[numChara].setStrength(chooseStrength()); // on choisit la force du personnage
+                type[numChara].setAgility(chooseAgility()); // // on choisit l'agilité du personnage
+                type[numChara].setIntelligence(chooseIntelligence()); // on choisit l'intelligence
+                player.setLifePlayer(type[numChara].getLevel()*5); // on calcule la vie du personnage
 
-
-                System.out.println(type[numChara].toString() + player.getNamePlayer() + " Niveau " +type[numChara].getLevel()+
-                        " je possède "+type[numChara].getLife()+" de vitalité, "+type[numChara].getStrength()+ " de force, "+
+        System.out.println(type[numChara].toString() + player.getNamePlayer() + " Niveau " +type[numChara].getLevel()+
+                        " je possède "+player.getLifePlayer()+" de vitalité, "+type[numChara].getStrength()+ " de force, "+
                         type[numChara].getAgility()+" d'agilité, "+ type[numChara].getIntelligence()+" d'intelligence !"
                 );
-                return type[numChara];
+        return type[numChara];
     }
 
-    /**
-     * @return Level of Character
+    /** Demande au joueur de choisir le niveau du personnage
+     * @return Le niveau du personnage
      */
     public int chooseLevel(){
      System.out.println("Niveau du personnage ?");
@@ -42,9 +41,8 @@ public class PersonnagesMaker {
      return level;
     }
 
-    /**
-     *
-     * @return Strength of Character
+    /** Demande au joueur de choisir la force du personnage
+     * @return La force du personnage
      */
     public int chooseStrength() {
 
@@ -62,14 +60,8 @@ public class PersonnagesMaker {
            return chooseStrength();
        }
 
-
-
-
-
-
-    /**
-     *
-     * @return Agility of Character
+    /** Demande au joueur de choisir l'agilité du personnage
+     * @return L'agilité du personnage
      */
     public int chooseAgility(){
         try {
@@ -83,8 +75,8 @@ public class PersonnagesMaker {
         }   return chooseAgility();
     }
 
-    /**
-     *
+    /** Demande au joueur de choisir l'intelligence de son personnage
+     * dépasse celui du njoueur
      * @return Intelligence of Character
      */
     public int chooseIntelligence(){
@@ -99,6 +91,10 @@ public class PersonnagesMaker {
         return chooseIntelligence();
     }
 
+    /** Cette méthode permet de lever une exception si la somme de la force, de l'agilité et de l'intelligence
+     * dépasse le niveau du personnage.
+     * @param nbAbility prend en paramètre le niveau de l'abilité.
+     */
     public void levelTest(int nbAbility){
         if (nbLevel - nbAbility <0){
             throw new AbilityTooMuchExceptions();

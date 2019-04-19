@@ -55,6 +55,6 @@ public abstract class Personnages {
         this.intelligence = intelligence;
     }
 
-    public abstract int basicAttack();
-    public abstract int specialAttack();
+    public abstract int basicAttack(Player player);
+    public abstract int specialAttack(Player player);
 }
