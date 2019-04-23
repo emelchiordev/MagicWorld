@@ -6,16 +6,18 @@ public class Rodeur extends Personnages{
         super(level, life, strength, agility, intelligence);
     }
     @Override
-    public void basicAttack(Player player1, Player player2,Personnages perso){
-        System.out.println(player1.getNamePlayer()+ " utilise : Tir à l'arc et inflige "+perso.getAgility()+" dommages" );
-        System.out.println(player2.getNamePlayer()+" perd " + perso.getAgility() + " points de vie");
-        player2.setLifePlayer(player2.getLifePlayer()-perso.getAgility());
+    public void basicAttack(Player player1, Player player2){
+        System.out.println(player1.getNamePlayer()+ " utilise : Tir à l'arc et inflige "+getAgility()+" dommages" );
+        System.out.println(player2.getNamePlayer()+" perd " + getAgility() + " points de vie");
+        player2.setLifePlayer(player2.getLifePlayer()-getAgility());
+        player2.deathSentence();
     }
     @Override
-    public void specialAttack(Player player1, Player player2,Personnages perso){
+    public void specialAttack(Player player1, Player player2){
         System.out.println(player1.getNamePlayer()+ " utilise : Tir à l'arc et inflige 0 dommages" );
-        System.out.println(player1.getNamePlayer() +" gagne "+ perso.getAgility()+(perso.getLevel()/2)+ " en agilité");
-        setAgility(getAgility()+(perso.getLevel()/2));
+        System.out.println(player1.getNamePlayer() +" gagne "+ getAgility()+(getLevel()/2)+ " en agilité");
+        setAgility(getAgility()+(getLevel()/2));
+        player2.deathSentence();
     }
 
     @Override
