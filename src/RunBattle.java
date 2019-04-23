@@ -18,22 +18,23 @@ public class RunBattle {
     PersonnagesMaker makePerso2 = new PersonnagesMaker();
     Personnages perso2 = makePerso2.makeCharacter(joueur2); // on crée le personnage du joueur2
 
-        while(perso1.getLife() <= 0 || perso2.getLife() <=0) {
-            System.out.println(joueur1.getNamePlayer()+" ("+joueur1.getLifePlayer()+" Vitalité) "+ "Veuillez choisir votre action : (1 - Attaque basique, 2 - Attaque spéciale :");
+        while(joueur1.getLifePlayer() > 0 && joueur2.getLifePlayer() > 0) {
+            joueur1.chooseAction();
             switch (sc.nextInt()){
-                case 1 : System.out.println(joueur1.getNamePlayer()+perso1.basicAttack());
+                case 1 : perso1.basicAttack(joueur1,joueur2,perso1);
                 break;
-                case 2 : System.out.println(joueur1.getNamePlayer()+perso1.specialAttack());
+                case 2 : perso1.specialAttack(joueur1,joueur2,perso1);
                 break;
             }
-            System.out.println(joueur2.getNamePlayer()+" ("+joueur2.getLifePlayer()+" Vitalité) "+ "Veuillez choisir votre action : (1 - Attaque basique, 2 - Attaque spéciale :");
+            joueur2.deathSentence();
+            joueur2.chooseAction();
             switch (sc.nextInt()){
-                case 1 : System.out.println(joueur2.getNamePlayer()+perso2.basicAttack());
+                case 1 : perso2.basicAttack(joueur2,joueur1,perso2);
                     break;
-                case 2 : System.out.println(joueur2.getNamePlayer()+perso2.specialAttack());
+                case 2 : perso2.specialAttack(joueur2,joueur1,perso2);
                     break;
             }
-
+            joueur1.deathSentence();
         }
 }
 

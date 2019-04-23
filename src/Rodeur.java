@@ -6,12 +6,16 @@ public class Rodeur extends Personnages{
         super(level, life, strength, agility, intelligence);
     }
     @Override
-    public int basicAttack(){
-    return 0;
+    public void basicAttack(Player player1, Player player2,Personnages perso){
+        System.out.println(player1.getNamePlayer()+ " utilise : Tir à l'arc et inflige "+perso.getAgility()+" dommages" );
+        System.out.println(player2.getNamePlayer()+" perd " + perso.getAgility() + " points de vie");
+        player2.setLifePlayer(player2.getLifePlayer()-perso.getAgility());
     }
     @Override
-    public int specialAttack(){
-    return 0;
+    public void specialAttack(Player player1, Player player2,Personnages perso){
+        System.out.println(player1.getNamePlayer()+ " utilise : Tir à l'arc et inflige 0 dommages" );
+        System.out.println(player1.getNamePlayer() +" gagne "+ perso.getAgility()+(perso.getLevel()/2)+ " en agilité");
+        setAgility(getAgility()+(perso.getLevel()/2));
     }
 
     @Override
