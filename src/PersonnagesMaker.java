@@ -14,11 +14,10 @@ public class PersonnagesMaker {
             System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
             int numChara = sc.nextInt() - 1;
                 Personnages type[] = {new Guerrier(), new Rodeur(), new Mage()}; // tableau qui contient les différentes instances de personnage
-                type[numChara].setLevel(chooseLevel()); // on choisit le niveau du personnage
-                nbLevel = type[numChara].getLevel(); // on récupère le niveau du personnage dans un attribut
-                type[numChara].setStrength(chooseStrength()); // on choisit la force du personnage
-                type[numChara].setAgility(chooseAgility()); // // on choisit l'agilité du personnage
-                type[numChara].setIntelligence(chooseIntelligence()); // on choisit l'intelligence
+                this.chooseLevel(type[numChara]); // on choisit le niveau du personnage
+                this.chooseStrength(type[numChara]); // on choisit la force du personnage
+                this.chooseAgility(type[numChara]); // on choisit l'agilité du personnage
+                this.chooseIntelligence(type[numChara]); // on choisit l'intelligence
                 player.setLifePlayer(type[numChara].getLevel()*5); // on calcule la vie du personnage
                 System.out.println(type[numChara].toString() + player.getNamePlayer() + " Niveau " +type[numChara].getLevel()+
                 " je possède "+player.getLifePlayer()+" de vitalité, "+type[numChara].getStrength()+ " de force, "+
@@ -32,20 +31,21 @@ public class PersonnagesMaker {
     /** Demande au joueur de choisir le niveau du personnage
      * @return Le niveau du personnage
      */
-    public int chooseLevel(){
+    public void chooseLevel(Personnages type){
      System.out.println("Niveau du personnage ?");
-     int level = sc.nextInt();
-     return level;
+     type.setLevel(sc.nextInt());
+     nbLevel = type.getLevel(); // on récupère le niveau du personnage dans un attribut
     }
 
     /** Demande au joueur de choisir la force du personnage
      * @return La force du personnage
      */
-    public int chooseStrength() {
+    public int chooseStrength(Personnages type) {
 
            try {
                System.out.println("Force du personnage ?");
                int strength = sc.nextInt();
+               type.setStrength(strength);
                this.levelTest(strength);
                nbLevel -= strength;
                return strength;
@@ -54,38 +54,40 @@ public class PersonnagesMaker {
                System.err.println("ATTENTION ! la force de votre personnage dépasse le niveau de votre joueur !");
 
            }
-           return chooseStrength();
+           return chooseStrength(type);
        }
 
     /** Demande au joueur de choisir l'agilité du personnage
      * @return L'agilité du personnage
      */
-    public int chooseAgility(){
+    public int chooseAgility(Personnages type){
         try {
             System.out.println("Agilité du personnage ?");
             int agility = sc.nextInt();
+            type.setAgility(agility);
             this.levelTest(agility);
             nbLevel -= agility;
             return agility;
         } catch (AbilityTooMuchExceptions e) {
             System.err.println("ATTENTION! le total de votre force et de votre agilité dépasse le niveau de votre personnage ");
-        }   return chooseAgility();
+        }   return chooseAgility(type);
     }
 
     /** Demande au joueur de choisir l'intelligence de son personnage
      * dépasse celui du njoueur
      * @return Intelligence of Character
      */
-    public int chooseIntelligence(){
+    public int chooseIntelligence(Personnages type){
         try {
             System.out.println("Intelligence du personnage ?");
             int intelligence = sc.nextInt();
+            type.setIntelligence(intelligence);
             this.levelTest(intelligence);
             return intelligence;
         } catch (AbilityTooMuchExceptions e) {
             System.err.println("ATTENTION ! la somme de votre force, agilité et intelligence dépasse le niveau de votre personnage ");
         }
-        return chooseIntelligence();
+        return chooseIntelligence(type);
     }
 
     /** Cette méthode permet de lever une exception si la somme de la force, de l'agilité et de l'intelligence
