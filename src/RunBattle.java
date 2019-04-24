@@ -15,16 +15,20 @@ public class RunBattle {
         Personnages persoPlayer2 = makePerso2.makeCharacter(joueur2); // on crée le personnage du joueur2
 
         while (joueur1.getLifePlayer() > 0 && joueur2.getLifePlayer() > 0) {
-             if (joueur1.getLifePlayer() > 0) {
+            if (joueur1.getLifePlayer() > 0) {
                 joueur1.chooseAction(joueur1, joueur2, persoPlayer1);
-             }
-             if (joueur2.getLifePlayer() > 0) {
-                 joueur2.chooseAction(joueur2, joueur1, persoPlayer2);
-             }
+            }
+
+            if (joueur2.getLifePlayer() > 0) {
+                joueur2.chooseAction(joueur2, joueur1, persoPlayer2);
+            }
 
         }
+        if (joueur1.getLifePlayer() <=0){
+            System.out.println ("le joueur "+joueur1.getNamePlayer()+ " est mort");
+        }else {
+            System.out.println ("le joueur "+joueur2.getNamePlayer()+ " est mort");        }
 
     }
-
 }
 
