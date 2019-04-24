@@ -6,30 +6,27 @@ public class PersonnagesMaker {
 
     /**
      * Permet de choisir le personnage du joueur, ainsi que tous ses attributs.
-     * Cette méthode calcul également la vie du joueur
      * @return Le personnage choisi par le joueur
-     *
      */
     public Personnages makeCharacter(Player player){
-
-        System.out.println("Création du personnage du "+player.getNamePlayer());
-        System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
-        int numChara = sc.nextInt()-1;
-
-        Personnages type[] = {new Guerrier(), new Rodeur(), new Mage()}; // tableau qui contient les différentes instances de personnage
-
+        try {
+            System.out.println("Création du personnage du "+player.getNamePlayer());
+            System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
+            int numChara = sc.nextInt() - 1;
+                Personnages type[] = {new Guerrier(), new Rodeur(), new Mage()}; // tableau qui contient les différentes instances de personnage
                 type[numChara].setLevel(chooseLevel()); // on choisit le niveau du personnage
                 nbLevel = type[numChara].getLevel(); // on récupère le niveau du personnage dans un attribut
                 type[numChara].setStrength(chooseStrength()); // on choisit la force du personnage
                 type[numChara].setAgility(chooseAgility()); // // on choisit l'agilité du personnage
                 type[numChara].setIntelligence(chooseIntelligence()); // on choisit l'intelligence
                 player.setLifePlayer(type[numChara].getLevel()*5); // on calcule la vie du personnage
-
-        System.out.println(type[numChara].toString() + player.getNamePlayer() + " Niveau " +type[numChara].getLevel()+
-                        " je possède "+player.getLifePlayer()+" de vitalité, "+type[numChara].getStrength()+ " de force, "+
-                        type[numChara].getAgility()+" d'agilité, "+ type[numChara].getIntelligence()+" d'intelligence !"
-                );
+                System.out.println(type[numChara].toString() + player.getNamePlayer() + " Niveau " +type[numChara].getLevel()+
+                " je possède "+player.getLifePlayer()+" de vitalité, "+type[numChara].getStrength()+ " de force, "+
+                type[numChara].getAgility()+" d'agilité, "+ type[numChara].getIntelligence()+" d'intelligence !");
         return type[numChara];
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.err.println("Veuillez choisir l'un des personnages proposés :");
+        }return makeCharacter(player);
     }
 
     /** Demande au joueur de choisir le niveau du personnage
