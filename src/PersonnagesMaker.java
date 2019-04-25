@@ -5,34 +5,63 @@ public class PersonnagesMaker {
       int nbLevel;     // Niveau du personnage
 
     /**
-     * Permet de choisir le personnage du joueur, ainsi que tous ses attributs.
-     * @return Le personnage choisi par le joueur
+     * Processus de fabrication du personnage
+     * Pose des questions à chaque joueur sur le choix du personnage et ses différents attributs
+     * @return -> Le personnage choisi par le joueur
      */
-    public Personnages makeCharacter(Player player){
-        try {
-            System.out.println("Création du personnage du "+player.getNamePlayer());
-            System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
-            int numChara = sc.nextInt() - 1;
-                Personnages type[] = {new Guerrier(), new Rodeur(), new Mage()}; // tableau qui contient les différentes instances de personnage
-                this.chooseLevel(type[numChara]); // on choisit le niveau du personnage
-                this.chooseStrength(type[numChara]); // on choisit la force du personnage
-                this.chooseAgility(type[numChara]); // on choisit l'agilité du personnage
-                this.chooseIntelligence(type[numChara]); // on choisit l'intelligence
-                player.setLifePlayer(type[numChara].getLevel()*5); // on calcule la vie du personnage
-                System.out.println(type[numChara].toString() + player.getNamePlayer() + " Niveau " +type[numChara].getLevel()+
-                " je possède "+player.getLifePlayer()+" de vitalité, "+type[numChara].getStrength()+ " de force, "+
-                type[numChara].getAgility()+" d'agilité, "+ type[numChara].getIntelligence()+" d'intelligence !");
-        return type[numChara];
-        }catch(ArrayIndexOutOfBoundsException e){
-            System.err.println("Veuillez choisir l'un des personnages proposés :");
-        }return makeCharacter(player);
+    public Personnages sentenceMakeCharacter(Player player){
+        System.out.println("Création du personnage du "+player.getNamePlayer());
+        System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
+        Personnages perso = this.chooseCharacter(sc.nextInt());
+        System.out.println("Niveau du personnage ?");
+        this.chooseLevel(perso);
+        System.out.println("Force du personnage ?");
+        this.chooseStrength(perso);
+        System.out.println("Agilité du personnage ?");
+        this.chooseAgility(perso);
+        System.out.println("Intelligence du personnage ?");
+        this.chooseIntelligence(perso);
+        this.definePlayerLife(player,perso);
+        return perso;
+    }
+
+    /**
+     * Permet de choisir le type du personnage : Guerrier, Rodeur ou Mage
+     * @param nbCharacter -> le numéro du personnage choisi par l'utilisateur
+     * @return le personnage choisi
+     */
+    public Personnages chooseCharacter(int nbCharacter) {
+        Personnages typeCharacter=null;
+        switch (nbCharacter) {
+            case 1:
+                typeCharacter = new Guerrier();
+            break;
+            case 2:
+                typeCharacter = new Rodeur();
+            break;
+            case 3:
+                typeCharacter = new Mage();
+            break;
+            default :
+        }return typeCharacter;
+    }
+
+    /**
+     * Permet de définir la vie du joueur
+     * @param player -> le joeur où la vie est à définir
+     * @param type -> Le personnage du joueur, pour récupérer son niveau
+     */
+    public void definePlayerLife(Player player, Personnages type){
+        player.setLifePlayer(type.getLevel()*5); // on calcule la vie du personnage
+        System.out.println(type.toString() + player.getNamePlayer() + " Niveau " +type.getLevel()+
+                " je possède "+player.getLifePlayer()+" de vitalité, "+type.getStrength()+ " de force, "+
+                type.getAgility()+" d'agilité, "+ type.getIntelligence()+" d'intelligence !");
     }
 
     /** Demande au joueur de choisir le niveau du personnage
      * @return Le niveau du personnage
      */
     public void chooseLevel(Personnages type){
-     System.out.println("Niveau du personnage ?");
      type.setLevel(sc.nextInt());
      nbLevel = type.getLevel(); // on récupère le niveau du personnage dans un attribut
     }
@@ -43,7 +72,6 @@ public class PersonnagesMaker {
     public int chooseStrength(Personnages type) {
 
            try {
-               System.out.println("Force du personnage ?");
                int strength = sc.nextInt();
                type.setStrength(strength);
                this.levelTest(strength);
@@ -62,7 +90,7 @@ public class PersonnagesMaker {
      */
     public int chooseAgility(Personnages type){
         try {
-            System.out.println("Agilité du personnage ?");
+
             int agility = sc.nextInt();
             type.setAgility(agility);
             this.levelTest(agility);
@@ -79,7 +107,7 @@ public class PersonnagesMaker {
      */
     public int chooseIntelligence(Personnages type){
         try {
-            System.out.println("Intelligence du personnage ?");
+
             int intelligence = sc.nextInt();
             type.setIntelligence(intelligence);
             this.levelTest(intelligence);
