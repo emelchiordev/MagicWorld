@@ -10,10 +10,10 @@ public class RunBattle {
     public static void startBattle() {
         Player joueur1 = new Player("Joueur 1"); // on initialise le joueur1
         PersonnagesMaker makePerso1 = new PersonnagesMaker();
-        Personnages persoPlayer1 = makePerso1.makeCharacter(joueur1); // on crée le personnage du joueur1
+        Personnages persoPlayer1 = makePerso1.sentenceMakeCharacter(joueur1); // on crée le personnage du joueur1
         Player joueur2 = new Player("Joueur 2"); // on initialise le joueur2
         PersonnagesMaker makePerso2 = new PersonnagesMaker();
-        Personnages persoPlayer2 = makePerso2.makeCharacter(joueur2); // on crée le personnage du joueur2
+        Personnages persoPlayer2 = makePerso2.sentenceMakeCharacter(joueur2); // on crée le personnage du joueur2
 
         while (joueur1.getLifePlayer() > 0 && joueur2.getLifePlayer() > 0) {
             if (joueur1.getLifePlayer() > 0) {
