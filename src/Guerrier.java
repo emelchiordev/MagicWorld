@@ -6,7 +6,13 @@ public class Guerrier extends Personnages {
         super(level, life, strength, agility, intelligence);
     }
 
-    // Coup d'épée
+    /**
+     * Lance une attaque coup d'épée
+     * @param player1 est le personnage qui lance l'attaque
+     * @param player2 est le personnage qui subit les dommages.
+     * Les dommages subits par l'adversaire sont égales à la force du player1
+     *
+     */
     @Override
     public void basicAttack(Player player1, Player player2){
         System.out.println(player1.getNamePlayer()+ " utilise : Coup d'épée et inflige "+getStrength()+" dommages" );
@@ -15,7 +21,13 @@ public class Guerrier extends Personnages {
         player2.deathSentence();
     }
 
-    // Coup de rage
+    /**
+     * Lance une attaque coup de rage
+     * @param player1 est le personnage qui lance l'attaque
+     * @param player2 est le personnage qui subit les dommages
+     * Les dommages subits par l'adversaire sont égales à la force du player1 x2.
+     * Le joueur qui lance cette attaque perd des points de vie.
+     */
     @Override
     public void specialAttack(Player player1, Player player2){
         System.out.println(player1.getNamePlayer()+ " utilise : Coup de Rage et inflige "+getStrength()*2+" dommages" );
@@ -27,6 +39,9 @@ public class Guerrier extends Personnages {
 
     }
 
+    /**
+     * Affiche une phrase de présentation pour le personnage
+     */
     @Override
     public String toString() {
        return "Woarg je suis le Guerrier ";

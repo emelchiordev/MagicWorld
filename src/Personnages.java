@@ -55,6 +55,17 @@ public abstract class Personnages {
         this.intelligence = intelligence;
     }
 
+    /**
+     * Lance une attaque basique
+     * @param player1 est le personnage qui lance l'attaque
+     * @param player2 est le personnage qui subit les dommages
+     */
     public abstract void basicAttack(Player player1, Player player2);
-    public abstract void specialAttack(Player player, Player player2);
+
+    /**
+     * Lance une attaque spéciale
+     * @param player1 est le personnage qui lance l'attaque
+     * @param player2 est le personnage qui subit les dommages
+     */
+    public abstract void specialAttack(Player player1, Player player2);
 }

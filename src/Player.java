@@ -8,6 +8,11 @@ public class Player {
         this.lifePlayer = 0;
         this.namePlayer = namePlayer;
     }
+    public Player() {
+        this.lifePlayer = 0;
+        this.namePlayer = "";
+    }
+
 
 
     public int getLifePlayer() {
@@ -31,6 +36,7 @@ public class Player {
      */
     public void chooseAction(Player player1, Player player2, Personnages perso){
         Scanner sc = new Scanner(System.in);
+
         System.out.println(this.getNamePlayer()+" ("+this.getLifePlayer()+ " Vitalité) "+ "Veuillez choisir votre action : (1 - Attaque basique, 2 - Attaque spéciale :");
         switch (sc.nextInt()) {
             case 1:
