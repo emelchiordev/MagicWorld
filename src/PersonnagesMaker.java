@@ -11,15 +11,10 @@ public class PersonnagesMaker {
      */
     public Personnages sentenceMakeCharacter(Player player){
         System.out.println("Création du personnage du "+player.getNamePlayer());
-        System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
-        Personnages perso = this.chooseCharacter(sc.nextInt());
-        System.out.println("Niveau du personnage ?");
+        Personnages perso = this.chooseCharacter();
         this.chooseLevel(perso);
-        System.out.println("Force du personnage ?");
         this.chooseStrength(perso);
-        System.out.println("Agilité du personnage ?");
         this.chooseAgility(perso);
-        System.out.println("Intelligence du personnage ?");
         this.chooseIntelligence(perso);
         this.definePlayerLife(player,perso);
         return perso;
@@ -27,10 +22,11 @@ public class PersonnagesMaker {
 
     /**
      * Permet de choisir le type du personnage : Guerrier, Rodeur ou Mage
-     * @param nbCharacter -> le numéro du personnage choisi par l'utilisateur
      * @return le personnage choisi
      */
-    public Personnages chooseCharacter(int nbCharacter) {
+    public Personnages chooseCharacter() {
+        System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
+        int nbCharacter = sc.nextInt();
         Personnages typeCharacter=null;
         switch (nbCharacter) {
             case 1:
@@ -42,7 +38,6 @@ public class PersonnagesMaker {
             case 3:
                 typeCharacter = new Mage();
             break;
-            default :
         }return typeCharacter;
     }
 
@@ -62,6 +57,7 @@ public class PersonnagesMaker {
      * @return Le niveau du personnage
      */
     public void chooseLevel(Personnages type){
+     System.out.println("Niveau du personnage ?");
      type.setLevel(sc.nextInt());
      nbLevel = type.getLevel(); // on récupère le niveau du personnage dans un attribut
     }
@@ -70,7 +66,7 @@ public class PersonnagesMaker {
      * @return La force du personnage
      */
     public int chooseStrength(Personnages type) {
-
+        System.out.println("Force du personnage ?");
            try {
                int strength = sc.nextInt();
                type.setStrength(strength);
@@ -89,6 +85,7 @@ public class PersonnagesMaker {
      * @return L'agilité du personnage
      */
     public int chooseAgility(Personnages type){
+        System.out.println("Agilité du personnage ?");
         try {
 
             int agility = sc.nextInt();
@@ -106,6 +103,7 @@ public class PersonnagesMaker {
      * @return Intelligence of Character
      */
     public int chooseIntelligence(Personnages type){
+        System.out.println("Intelligence du personnage ?");
         try {
 
             int intelligence = sc.nextInt();
