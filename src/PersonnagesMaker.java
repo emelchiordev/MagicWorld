@@ -25,7 +25,7 @@ public class PersonnagesMaker {
      * @return le personnage choisi
      */
     public Personnages chooseCharacter() {
-        System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage !)");
+        System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)");
         int nbCharacter = sc.nextInt();
         Personnages typeCharacter=null;
         switch (nbCharacter) {
