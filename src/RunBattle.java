@@ -26,9 +26,9 @@ public class RunBattle {
 
         }
         if (joueur1.getLifePlayer() <=0){
-            System.out.println ("le "+joueur1.getNamePlayer()+ " a perdu");
+            System.out.println ("le "+joueur1.getNamePlayer()+ " a perdu !");
         }else {
-            System.out.println ("le "+joueur2.getNamePlayer()+ " a perdu");        }
+            System.out.println ("le "+joueur2.getNamePlayer()+ " a perdu !");        }
 
     }
 }
